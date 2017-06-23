@@ -10,6 +10,6 @@ let usuarioSchema = mongoose.Schema({
     id: String,
     token: String,
     telefones: []
-});
+}, {versionKey:false});
 
 mongoose.model('Usuario', usuarioSchema, 'Usuario');

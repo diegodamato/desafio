@@ -42,34 +42,21 @@ module.exports = () =>
                     if (erro){
                         reject(erro);
                     }else{
-                        resolve(result);
+                        let user = Object.assign({}, result._doc);
+                        delete user._id;
+                        resolve(user);
                     }
                 })
             })
         }
 
         validarDadosEntrada(dadosUsuario){
-            return new Promise((resolve, reject) =>{
-                this._usuarioModel.find({"email": dadosUsuario.email}, (erro,usuario) =>{
-                    if(erro)
-                        reject(erro);
-                    else
-                        usuario.length ? resolve(usuario[0]._doc) : resolve(null);                    
-
-                });
-            });
+            return this._usuarioModel.find({"email": dadosUsuario.email});
         }
 
         buscarUsuarioPorId(id){
-            return new Promise((resolve, reject) =>{
-                this._usuarioModel.find({"id":id}, (erro, usuario) =>{
-                    if (erro)
-                        reject(erro);
-                    else
-                        if(usuario.length)
-                            resolve(usuario[0]._doc);                           
-                });
-            });
+            return this._usuarioModel.findOne({"id":id})
+                .then(usuario => usuario ? usuario._doc : {});
         }
     }
 

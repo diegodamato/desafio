@@ -8,6 +8,4 @@ module.exports = app =>{
     app.route("/v1/usuario/:id")
         .get(controlador.consultar.bind(controlador));
     
-    app.route("/v1/usuario/entrar")
-        .post(controlador.entrar.bind(controlador));
 }

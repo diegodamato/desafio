@@ -34,7 +34,7 @@ module.exports = () =>
                         }else{
                             resolve("401");
                         }
-                        
+            
                         
                     });
             });
@@ -47,12 +47,15 @@ module.exports = () =>
                         if (usuario.token != token){
                             resolve("Não autorizado")
                         }else{
-                            let ultimoLogin = usuario.ultimo_login;
-                            let dataAtual = new Date();
-
+                            let ultimoLogin = moment(usuario.ultimo_login);
+                            let dataAtual = moment();
+                            let diferenca = dataAtual.diff(ultimoLogin);
+                            let diferencaDatas = moment.duration(diferenca).asMinutes();
 
                             if(diferencaDatas > 30 ){
                                 console.log("Expirou a sessão");
+                            }else{
+                                console.log("retornar usuario");
                             }
                         }
                         

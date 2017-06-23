@@ -24,7 +24,8 @@ module.exports = () =>
             this._usuarioService.salvarUsuario(usuario)
                 .then(result => {
                     if(result)
-                        res.json(result);
+                        res.status(200)
+                           .json(result);
                 }).catch(error => res.json({"mensagem" : error}));
 
         }
