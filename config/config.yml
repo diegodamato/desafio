@@ -1,0 +1,15 @@
+mongodb:
+    url: mongodb://localhost:27017/desafio
+
+server:
+  port: 3000
+
+log:
+  path: log
+  maxSize: 100000
+  maxFiles: 10
+  files:
+    erro: desafio-erro.log
+    info: desafio-info.log
+
+

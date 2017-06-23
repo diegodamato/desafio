@@ -1,0 +1,24 @@
+{
+  "name": "desafio",
+  "version": "1.0.0",
+  "description": "Desafio node.js Concrete Solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diego Oliveira Damato",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "consign": "^0.1.6",
+    "express": "^4.15.3",
+    "guid": "0.0.12",
+    "js-yaml": "^3.8.4",
+    "jsonwebtoken": "^7.4.1",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.10.7",
+    "nodemon": "^1.11.0",
+    "winston": "^2.3.1"
+  }
+}
