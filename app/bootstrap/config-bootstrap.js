@@ -3,13 +3,12 @@ const fs = require('fs');
 let logger = require('../util/log');
 
 const envs = {
-    desafio: './config/config.yml',
+    dev: './config/dev.yml',
+    test: './config/test.yml'
 };
 
 let envName = process.env['NODE_ENV'];
 let file = null;
-
-envName = "desafio"
 
 try {
 

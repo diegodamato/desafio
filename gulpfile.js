@@ -5,7 +5,6 @@ let run = require('gulp-run');
 
 gulp.task('default',() => {
   run('npm start').exec(); 
-    console.log('rodou servidor')
     gulp.watch('app/**/*').on('change',event =>{
         gulp.src(event.path) 
             .pipe(jshint({esversion:6})) 

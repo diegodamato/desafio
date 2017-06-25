@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+let logger = require('../util/log');
 
 module.exports = () =>
     class usuarioRepository{
@@ -7,6 +8,9 @@ module.exports = () =>
         }
 
         consultarEmail(email){
+            
+            logger.info(`usuarioRepository - consultarEmail  - email: ${email}`);
+            
             return new Promise((resolve, reject) =>{
                 this._usuarioModel.find({"email": email},(erro, result) =>{
                     if(erro)
@@ -36,7 +40,9 @@ module.exports = () =>
             usu.data_criacao = dataAtual;
             usu.data_atualizacao = dataAtual;
             usu.ultimo_login = dataAtual;
- 
+            
+            logger.info(`usuarioRepository - salvar - usuario: ${usu}`);
+
             return new Promise((resolve, reject) => {
                 usu.save((erro, result) =>{
                     if (erro){
@@ -51,12 +57,18 @@ module.exports = () =>
         }
 
         validarDadosEntrada(dadosUsuario){
-            return this._usuarioModel.find({"email": dadosUsuario.email});
+
+            logger.info(`usuarioRepository - validarDadosEntrada  - Dados do usuario: ${dadosUsuario}`);
+
+            return this._usuarioModel.findOne({"email": dadosUsuario.email}, {"_id": 0})
+                .then(usuario => usuario ? usuario._doc : {});
         }
 
         buscarUsuarioPorId(id){
-            return this._usuarioModel.findOne({"id":id})
+            
+            logger.info(`usuarioRepository - buscarUsuarioPorId  - id: ${id}`);
+
+            return this._usuarioModel.findOne({"id":id}, {"_id": 0})
                 .then(usuario => usuario ? usuario._doc : {});
         }
     }
-

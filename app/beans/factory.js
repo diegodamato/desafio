@@ -16,9 +16,14 @@ module.exports = app =>{
             return new app.controller.usuarioController(this.usuarioRepository, this.usuarioService);
         },
 
+        get signinService(){
+            return new app.service.signinService(this.usuarioRepository);
+        },
+
         get signinController(){
-            return new app.controller.signinController(this.usuarioService);
-        }
+            return new app.controller.signinController(this.signinService);
+        },
+
 
     }
 }
