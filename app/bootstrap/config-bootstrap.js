@@ -4,6 +4,7 @@ let logger = require('../util/log');
 
 const envs = {
     dev: './config/dev.yml',
+    production: './config/production.yml',
     test: './config/test.yml'
 };
 
