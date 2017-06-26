@@ -2,8 +2,10 @@ const app = require('./app/bootstrap/express-bootstrap')();
 const config = require('./app/bootstrap/config-bootstrap')();
 let log = require('./app/util/log');
 
-app.listen(config.server.port, function () {
-    log.info(`Servidor rodando na porta ${config.server.port}`);
+let processPort = process.env.PORT || config.server.port;
+
+app.listen(processPort, function () {
+    log.info(`Servidor rodando na porta ${processPort}`);
 });
 
 
