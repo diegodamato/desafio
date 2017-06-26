@@ -8,7 +8,7 @@ module.exports = () =>
             this._signinService = signinService;
         }
 
-        entrar(req, res){
+        entrar(req, res, next){
             let dadosUsuario = {};
             dadosUsuario.email = req.body.email;
             dadosUsuario.senha = md5(req.body.senha);
@@ -29,7 +29,8 @@ module.exports = () =>
                                .json(result);
                         }
                     }
-                }).catch(error => res.json({"mensagem" : error}));
+                }).catch(erro => next(erro));
+                
             
 
         }

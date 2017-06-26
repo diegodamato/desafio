@@ -13,7 +13,7 @@ module.exports = () =>
             this._guid = guid.create();
         }
 
-        cadastrar(req, res){
+        cadastrar(req, res, next){
             let usuario = {};
             usuario.nome = req.body.nome;
             usuario.email = req.body.email;
@@ -35,11 +35,11 @@ module.exports = () =>
                     else
                         res.status(200)
                         .json(result);
-                }).catch(error => res.json({"mensagem" : error}));
+                }).catch(erro => next(erro));
 
         }
 
-        consultar(req, res){
+        consultar(req, res, next){
             let idUsuario = req.params.id;
             let token = req.headers.authorization; 
             
@@ -63,9 +63,8 @@ module.exports = () =>
                                .json(result);
                         }
 
-                }).catch(error => res.json({"mensagem" : error}));
+                }).catch(error => next(error));
             }
         }
-
-        
+       
     };

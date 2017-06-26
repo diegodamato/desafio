@@ -6,4 +6,4 @@ class validadorAmbiente{
     }
 }
 
-module.exports = new validadorAmbiente;
+module.exports = () => validadorAmbiente;

@@ -7,7 +7,7 @@ let app = require('../app/bootstrap/express-bootstrap')();
 let config = require('../app/bootstrap/config-bootstrap')();
 let statusMensagens = require('../app/util/statusMensagens');
 
-//let validadorAmbiente = require('../util/validadorAmbiente');
+let validadorAmbiente = require('../app/util/validadorAmbiente')();
 let DatabaseCleaner = require('database-cleaner');
 let token = '';
 
@@ -36,10 +36,11 @@ usuario.token = md5(jwt.sign(usuario, "secreto"));
 
 describe('Testando signinController', () => {
 
-    // before(done => {
-    //     let validador = new validadorAmbiente();
-    //     validador.validar();
-    // });
+    before(done => {
+        let validador = new validadorAmbiente();
+        validador.validar();
+        done();
+    });
 
    beforeEach((done) => {
      connection(config.mongodb.url,
@@ -70,7 +71,6 @@ describe('Testando signinController', () => {
                 .post('/v1/signin')
                 .send(dados)
                 .timeout(30000)
-                //.expect((res) => res.body == usuario)
                 .expect(200)
                 .expect('Content-Type',/json/)
                 .end(done); 
@@ -108,4 +108,4 @@ describe('Testando signinController', () => {
                 .end(done); 
     }); 
 
-}); 
+});

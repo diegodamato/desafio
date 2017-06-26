@@ -2,7 +2,7 @@ mongodb:
     url: mongodb://localhost:27017/desafioTest
 
 server:
-  port: 3000
+  port: 3007
 log:
   path: log
   maxSize: 100000

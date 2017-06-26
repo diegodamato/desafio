@@ -8,7 +8,7 @@ let app = require('../app/bootstrap/express-bootstrap')();
 let config = require('../app/bootstrap/config-bootstrap')();
 let statusMensagens = require('../app/util/statusMensagens');
 
-//let validadorAmbiente = require('../app/util/validadorAmbiente');
+let validadorAmbiente = require('../app/util/validadorAmbiente')();
 let DatabaseCleaner = require('database-cleaner');
 
 let g1 = guid.create();
@@ -59,10 +59,11 @@ usuario2.token = md5(jwt.sign(usuario2, "secreto"));
 
 describe('Testando usuarioController', () => {
 
-    // before(done => {
-    //     let validador = new validadorAmbiente();
-    //     validador.validar();
-    // });
+    before(done => {
+        let validador = new validadorAmbiente();
+        validador.validar();
+        done();
+    });
 
    beforeEach((done) => {
      connection(config.mongodb.url,
@@ -190,7 +191,6 @@ describe('Testando usuarioController', () => {
                 .post(`/v1/usuario`)
                 .send(usuario)
                 .timeout(30000)
-                //.expect((res) => res.body == usuario)
                 .expect(200)
                 .expect('Content-Type',/json/)
                 .end(done);
